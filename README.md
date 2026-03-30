@@ -25,3 +25,8 @@ Kod, API anahtarını şu sırayla okur: `VITE_DEFAULT_API_KEY` -> `DEFAULT_API_
 
 Bu repo `vercel.json` ile **framework: vite** olarak sabitlendi.
 Vercel proje ayarlarında da Framework Preset alanı `Vite` olmalı.
+
+
+## Watch klavye notu
+
+Giriş alanı `textarea` yerine tek satır `input` olarak ayarlandı ve yazı taslağı `localStorage`'a kaydediliyor. Böylece saatte klavyeden `Done/Tamam` sonrası metin kaybolsa bile tekrar yüklenir.

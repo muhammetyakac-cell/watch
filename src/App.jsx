@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 
 const MODEL = "gemini-2.5-flash";
 const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent`;
+const DRAFT_KEY = "watch_qa_draft";
 
 function extractText(data) {
   return (
@@ -20,13 +21,29 @@ function getApiKey() {
   return fromVite || fromWindow || fromDefine || "";
 }
 
+function getInitialDraft() {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  return window.localStorage.getItem(DRAFT_KEY) || "";
+}
+
 export default function App() {
-  const [question, setQuestion] = useState("");
+  const [question, setQuestion] = useState(getInitialDraft);
   const [answer, setAnswer] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const apiKey = useMemo(() => getApiKey(), []);
+
+  const handleQuestionChange = (value) => {
+    setQuestion(value);
+
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(DRAFT_KEY, value);
+    }
+  };
 
   const askAI = async () => {
     const trimmed = question.trim();
@@ -80,11 +97,14 @@ export default function App() {
     <main className="watch-shell">
       <h1>Soru-Cevap</h1>
 
-      <textarea
+      <input
+        type="text"
         value={question}
-        onChange={(event) => setQuestion(event.target.value)}
+        onChange={(event) => handleQuestionChange(event.target.value)}
         placeholder="Sorunu yaz"
-        rows={4}
+        enterKeyHint="done"
+        autoCorrect="on"
+        autoCapitalize="sentences"
       />
 
       <button type="button" onClick={askAI} disabled={loading}>

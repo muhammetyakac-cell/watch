@@ -35,14 +35,13 @@ h1 {
   text-align: center;
 }
 
-textarea {
+input {
   width: 100%;
   border-radius: 14px;
   border: 1px solid #2a3352;
   background: #090d1c;
   color: #eff2ff;
   padding: 10px;
-  resize: none;
   font-size: 0.85rem;
 }
 
