@@ -16,8 +16,9 @@ npm run dev
 
 ## Not
 
-Kod, API anahtarını öncelikle `VITE_DEFAULT_API_KEY` ve sonra `DEFAULT_API_KEY` üzerinden okur.
-Vite tarafında güvenilir kullanım için `VITE_DEFAULT_API_KEY` önerilir.
+Kod, API anahtarını şu sırayla okur: `VITE_DEFAULT_API_KEY` -> `DEFAULT_API_KEY` -> `window.DEFAULT_API_KEY`.
+
+`DEFAULT_API_KEY` değişkenini doğrudan kullanacaksan Vite config içinde build-time olarak enjekte edilir (bkz. `vite.config.js`). Yine de en sorunsuz yöntem `VITE_DEFAULT_API_KEY` kullanmaktır.
 
 
 ## Vercel

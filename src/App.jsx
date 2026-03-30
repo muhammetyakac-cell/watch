@@ -12,19 +12,21 @@ function extractText(data) {
   );
 }
 
+function getApiKey() {
+  const fromVite = import.meta.env.VITE_DEFAULT_API_KEY || import.meta.env.DEFAULT_API_KEY;
+  const fromWindow = typeof window !== "undefined" ? window.DEFAULT_API_KEY : "";
+  const fromDefine = typeof __DEFAULT_API_KEY__ !== "undefined" ? __DEFAULT_API_KEY__ : "";
+
+  return fromVite || fromWindow || fromDefine || "";
+}
+
 export default function App() {
   const [question, setQuestion] = useState("");
   const [answer, setAnswer] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const apiKey = useMemo(
-    () =>
-      import.meta.env.VITE_DEFAULT_API_KEY ||
-      import.meta.env.DEFAULT_API_KEY ||
-      "",
-    []
-  );
+  const apiKey = useMemo(() => getApiKey(), []);
 
   const askAI = async () => {
     const trimmed = question.trim();
