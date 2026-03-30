@@ -18,3 +18,9 @@ npm run dev
 
 Kod, API anahtarını öncelikle `VITE_DEFAULT_API_KEY` ve sonra `DEFAULT_API_KEY` üzerinden okur.
 Vite tarafında güvenilir kullanım için `VITE_DEFAULT_API_KEY` önerilir.
+
+
+## Vercel
+
+Bu repo `vercel.json` ile **framework: vite** olarak sabitlendi.
+Vercel proje ayarlarında da Framework Preset alanı `Vite` olmalı.
