@@ -7,6 +7,8 @@ Gemini `gemini-2.5-flash` modeliyle çalışır.
 
 ```bash
 npm install
+# CI/deploy ortamında sadece production paketleri kuruluyorsa:
+# npm install --include=dev
 cp .env.example .env
 # .env içine API key ekle
 npm run dev
